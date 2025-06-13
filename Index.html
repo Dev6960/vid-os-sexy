@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Page de Connexion - Facebook</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9eff1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 450px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .login-container img {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #1877f2;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .input-field {
+            margin-bottom: 20px;
+        }
+
+        .input-field input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #dddfe2;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input-field input:focus {
+            border-color: #1877f2;
+            outline: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #1877f2;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #165eab;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+        }
+
+        .forgot-password a {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            margin: 20px 0;
+            text-align: center;
+            color: #aaa;
+        }
+
+        .divider hr {
+            margin: 0;
+            border: 0;
+            border-top: 1px solid #dddfe2;
+        }
+
+        .divider span {
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .create-account {
+            margin-top: 15px;
+        }
+
+        .signup-btn {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .signup-btn:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+        <h2>Se connecter</h2>
+        <form action="#" method="POST">
+            <div class="input-field">
+                <input type="email" name="email" placeholder="Adresse e-mail ou numéro de téléphone" required>
+            </div>
+            <div class="input-field">
+                <input type="password" name="password" placeholder="Mot de passe" required>
+            </div>
+            <button type="submit" class="login-btn">Se connecter</button>
+        </form>
+
+        <div class="forgot-password">
+            <a href="#">Mot de passe oublié ?</a>
+        </div>
+
+        <div class="divider">
+            <hr>
+            <span>ou</span>
+        </div>
+
+        <div class="create-account">
+            <a href="#" class="signup-btn">Créer un nouveau compte</a>
+        </div>
+    </div>
+
+</body>
+</html>

